@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Thought, Task, Category } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -23,6 +23,10 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    categories: () => Category.find(),
+    tasks: () => Task.find(),
+    task: (_, args) => Task.findById(args.id),
+    category: (_, args) => Category.findById(args.id)
   },
 
   Mutation: {
@@ -114,6 +118,17 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    addCategory: (_, args) => {
+      const {title, description} = args
+      let category = new Category({title, description})
+      return category.save()
+    },
+
+    addTask: (_, args) => {
+      const {categoryid, description, deadline, done, important} = args
+      let task = new Task({categoryid, description, deadline, done, important})
+      return task.save()
+    }
   },
 };
 

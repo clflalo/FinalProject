@@ -54,3 +54,17 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_TASK = gql`
+mutation addTask($taskId: ID!, $taskDescription: String!, $taskDeadline: String!, $taskImportant: Boolean) {
+  addTask(taskId: $taskId, taskDescription: $taskdescription, taskDeadline: $taskdeadline, taskImportant: $taskImportant) {
+    _id
+    description
+    deadline
+    done
+    important
+    createdAt
+    updatedAt
+  }
+}
+`
