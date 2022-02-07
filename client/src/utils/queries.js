@@ -25,6 +25,16 @@ export const QUERY_THOUGHTS = gql`
     }
   }
 `;
+export const QUERY_TASKS = gql`
+  query getTasks {
+    Task {
+      _id
+      description
+      deadline
+      important
+    }
+  }
+`;
 
 export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleThought($thoughtId: ID!) {
