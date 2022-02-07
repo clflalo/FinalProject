@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^15.0.0"
+    "dotenv": "^15.0.0",
+    "react-calendar": "^3.7.0"
   }
 }
