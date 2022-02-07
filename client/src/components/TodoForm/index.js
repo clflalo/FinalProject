@@ -8,8 +8,8 @@ import { QUERY_TASKS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const TodoForm = () => {
-  const [description, setdescription] = useState('');
-  const [characterCount, setCharacterCount] = useState(0);
+  const [description, setDescription] = useState('');
+  const [charCount, setCharCount] = useState(0);
 
   const [addTask, { error }] = useMutation(ADD_TASK, {
     update(cache, { data: { addTask } }) {
@@ -42,9 +42,10 @@ const TodoForm = () => {
           description,
           createdBy: Auth.getProfile().data.username,
         },
+        
       });
-
-      setdescription('');
+      
+      setDescription('');
     } catch (err) {
       console.error(err);
     }
@@ -52,10 +53,11 @@ const TodoForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    console.log(event)
     if (name === 'description' && value.length <= 280) {
-      setdescription(value);
-      setCharacterCount(value.length);
+      console.log("test")
+      setDescription(value);
+      setCharCount(value.length);
     }
   };
 
@@ -67,18 +69,19 @@ const TodoForm = () => {
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              charCount === 280 || error ? 'text-danger' : ''
             }`}
           >
-            Character Count: {characterCount}/280
+            Character Count: {charCount}/280
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
-              <textarea
-                name="thoughtText"
+          
+                 <textarea
+                name="description"
                 placeholder="Here's a new task..."
                 value={description}
                 className="form-input w-100"
@@ -101,7 +104,7 @@ const TodoForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your tasks. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

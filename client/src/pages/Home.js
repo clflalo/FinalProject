@@ -4,17 +4,20 @@ import { useQuery } from '@apollo/client';
 import ThoughtList from '../components/ThoughtList';
 import ThoughtForm from '../components/ThoughtForm';
 import TodoForm from '../components/TodoForm';
-// import TodoList from '../components/TodoList';
+import TodoList from '../components/TodoList';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
+import {QUERY_TASKS} from '../utils/queries';
 
 function Home() { 
   const [date, setDate] = useState(new Date());
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_THOUGHTS, QUERY_TASKS);
   const thoughts = data?.thoughts || [];
+  const tasks = data?.tasks || [];
+
 
   return (
     <main>
@@ -52,15 +55,17 @@ function Home() {
             />
           )}
         </div>
-        {/* <div className="col-12 col-md-8 mb-3">
+
+        <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
             <TodoList
-              title="Some Feed for Thought(s)..."
+            tasks={tasks}
+              title="Here are your tasks..."
             />
           )}
-        </div> */}
+        </div>
       </div>
     </main>
   );
