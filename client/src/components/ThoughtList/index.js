@@ -25,13 +25,13 @@ const ThoughtList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
+                    You wrote this note on {thought.createdAt}
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
+                    You wrote this note on {thought.createdAt}
                   </span>
                 </>
               )}
@@ -39,12 +39,6 @@ const ThoughtList = ({
             <div className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
             </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${thought._id}`}
-            >
-              Join the discussion on this thought.
-            </Link>
           </div>
         ))}
     </div>
