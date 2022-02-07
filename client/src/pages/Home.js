@@ -22,25 +22,25 @@ function Home() {
   return (
     <main>
       <div className="flex-row justify-center">
-      <div className='app'>
-      <h1 className='text-center'>Calendar</h1>
-      <div className='calendar-container'>
-        <Calendar onChange={setDate} value={date} />
-      </div>
-      <p className='text-center'>
-        <span className='bold'>Selected Date:</span>{' '}
-        {date.toDateString()}
-      </p>
+        <div className='app col-12 col-md-10 mb-3 p-3'>
+          <h1 className='text-center'>Calendar</h1>
+          <div className='calendar-container mb-3'>
+            <Calendar onChange={setDate} value={date} />
+          </div>
+          <p className='text-center'>
+          <span className='bold'>Selected Date:</span>{' '}
+          {date.toDateString()}
+          </p>
     </div>
         <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
+          className="mb-3 p-3"
+          style={{ border: '1px solid' }}
         >
           <ThoughtForm />
         </div>
         <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
+          className="mb-3 p-3"
+          style={{ border: '1px solid' }}
         >
           <TodoForm />
         </div>
